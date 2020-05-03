@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--Font.loadFont(getClass().getResourceAsStream("/fonts/Helvetica Neu Bol.ttf"), 14);-->
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1061c9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agendo.LoginController">
+   <children>
+      <VBox layoutX="507.0" layoutY="378.0" prefHeight="115.0" prefWidth="220.0" spacing="5.0">
+         <children>
+            <Label text="Belum punya akun?" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Label>
+            <Hyperlink text="Daftar sekarang!" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </VBox>
+      <VBox layoutX="474.0" layoutY="121.0" prefHeight="249.0" prefWidth="220.0" spacing="10.0">
+         <children>
+            <Label text="Login" textFill="#f2f2f2">
+               <font>
+                  <Font name="HoloLens MDL2 Assets" size="31.0" />
+               </font>
+               <padding>
+                  <Insets bottom="20.0" left="60.0" />
+               </padding>
+            </Label>
+            <Label text="email" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </TextField>
+            <Label text="password" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </PasswordField>
+            <Button mnemonicParsing="false" style="-fx-background-color: #37b05c;" text="Login" textFill="#f2f2f2">
+               <VBox.margin>
+                  <Insets left="70.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Verdana Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fitHeight="249.0" fitWidth="304.0" layoutX="96.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/amplas.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="220.0" layoutY="427.0" text="mencoba lagi" />
+   </children>
+</AnchorPane>
