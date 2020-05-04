@@ -74,6 +74,7 @@
                   </HBox>
                   <ComboBox fx:id="bulan" layoutX="14.0" layoutY="28.0" onAction="#tombolBulan" prefHeight="25.0" prefWidth="105.0" />
                   <Label fx:id="jumlahHari" layoutX="144.0" layoutY="32.0" text="Label" />
+                  <ComboBox fx:id="tahun" layoutX="427.0" layoutY="28.0" onAction="#tombolTahun" prefHeight="25.0" prefWidth="82.0" />
                </children>
             </AnchorPane>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #f2f2f2;">

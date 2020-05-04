@@ -34,6 +34,9 @@ public class UtamaController implements Initializable {
     @FXML private Label jumlahHari;
     @FXML private GridPane grid = new GridPane();
     @FXML private ComboBox bulan;
+    @FXML private ComboBox tahun;
+    private int hari;
+    private int lastday;
     private Calendar calendar = Calendar.getInstance();
     
 
@@ -83,18 +86,48 @@ public class UtamaController implements Initializable {
     	if(bulan.getValue().toString()=="Desember") {
     		dateMonth=11;
     	}
-    	int lastday = getLastDateOfMonth(dateMonth);
+    	this.lastday = getLastDateOfMonth(dateMonth);
     	calendar.set(Calendar.DATE, 1);
-    	int hari = calendar.get(Calendar.DAY_OF_WEEK);
+    	this.hari = calendar.get(Calendar.DAY_OF_WEEK);
     	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
-//    	int row=lastday/7;
+    	tombolPopulate();
+    }
+    
+    @FXML
+    private void tombolTahun() {
+    	int iTahun=2020;
+    	if(tahun.getValue().toString()=="2020") {
+    		iTahun=2020;
+    	}
+    	if(tahun.getValue().toString()=="2021") {
+    		iTahun=2021;
+    	}
+    	if(tahun.getValue().toString()=="2022") {
+    		iTahun=2022;
+    	}
+    	if(tahun.getValue().toString()=="2023") {
+    		iTahun=2023;
+    	}
+    	if(tahun.getValue().toString()=="2024") {
+    		iTahun=2024;
+    	}
+    	if(tahun.getValue().toString()=="2025") {
+    		iTahun=2025;
+    	}
+    	calendar.set(Calendar.YEAR, iTahun);
+    	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
+    	tombolBulan();
+    }
+    
+    @FXML
+    private void tombolPopulate() {
     	int day=1,count=1;
     	grid.getChildren().clear();
     	for(int i=0;i<6;i++) {
     		for(int j=0;j<7;j++) {
     			if(count<hari) {
     				Label angka = new Label();
-					angka.setText("A");
+					angka.setText(" ");
 					grid.add(angka, j, i);
 					count++;
     			}else {
@@ -109,21 +142,6 @@ public class UtamaController implements Initializable {
     			}
     		}
     	}
-    	
-    }
-    
-    @FXML
-    private void tombolPopulate() {
-    	int count=1;
-    	for(int i=0;i<5;i++) {
-    		for(int j=0;j<7;j++) {
-    			Label angka = new Label();
-    			angka.setText(""+count);
-    			grid.add(angka, j, i);
-    			count++;
-    		}
-    	}
-    	
     }
     
     
@@ -141,6 +159,11 @@ public class UtamaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     	bulan.getItems().addAll("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+    	bulan.setValue("Mei");
+    	tahun.getItems().addAll("2020","2021","2022","2023","2024","2025");
+    	tahun.setValue("2020");
+    	this.tombolTahun();
+    
     }    
     
 }
