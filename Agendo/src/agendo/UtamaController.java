@@ -23,26 +23,20 @@ import javafx.scene.Node;
  *
  * @author USER
  */
-public class LoginController implements Initializable {
+public class UtamaController implements Initializable {
     
     @FXML
     private Label label;
     
     
     @FXML
-    private void tombolLogin(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
+    private void tombolMetu(ActionEvent event) throws IOException {
+    	Parent utamaParent = FXMLLoader.load(getClass().getResource("login.fxml"));
     	Scene utamaScene = new Scene(utamaParent);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	
     	window.setScene(utamaScene);
     	window.show();
-    }
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
     }
     
     @Override
