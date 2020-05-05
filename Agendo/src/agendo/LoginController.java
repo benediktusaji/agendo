@@ -7,17 +7,20 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 /**
  *
@@ -25,39 +28,82 @@ import javafx.scene.Node;
  */
 public class LoginController implements Initializable {
     
-    @FXML
-    private Label label;
+	
+	
+    @FXML private Label keterangan;
+    @FXML private TextField email;
+    @FXML private PasswordField password;
+    private ArrayList<Account> accountList = new ArrayList<Account>();
     
+    public void initDataAccount(ArrayList<Account> accountList) {
+    	this.accountList = accountList;
+    }
     
     @FXML
     private void tombolLogin(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
-    	Scene utamaScene = new Scene(utamaParent);
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	
-    	window.setScene(utamaScene);
-    	window.show();
+    	String str="Akun yang ada:\n";
+    	for(int i=0;i<accountList.size();i++) {
+    		str += accountList.get(i).toString();
+    	}
+    	System.out.println(str);
+    	if(cekAkun()) {
+    		Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
+    		Scene utamaScene = new Scene(utamaParent);
+    		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    		
+    		window.setScene(utamaScene);
+    		window.show();    		
+    	}
     }
     
     @FXML
     private void daftarSekarang(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("daftar.fxml"));
-    	Scene utamaScene = new Scene(utamaParent);
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+//    	Parent utamaParent = FXMLLoader.load(getClass().getResource("daftar.fxml"));
+//    	Scene utamaScene = new Scene(utamaParent);
+//    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+//    	passAccountList();
+//    	
+//    	window.setScene(utamaScene);
+//    	window.show();
     	
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("daftar.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	DaftarController controller = loader.getController();
+    	controller.initDataAccount(accountList);
+    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
     	window.setScene(utamaScene);
     	window.show();
     }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void passAccountList() throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("daftar.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	DaftarController controller = loader.getController();
+    	controller.initDataAccount(accountList);
+    }
+    
+//    cek apakah akun ada di list
+    private boolean cekAkun() {
+    	boolean masuk=false;
+    	for(int i=0;i<accountList.size();i++) {
+    		if(accountList.get(i).getEmail().equals(email.getText())&&accountList.get(i).getPassword().equals(password.getText())) {
+    			masuk=true;
+    		}
+    	}
+    	
+    	return masuk;
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    	
     }    
     
 }

@@ -7,6 +7,7 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -28,25 +29,64 @@ import javafx.stage.Stage;
  */
 public class DaftarController implements Initializable {
     
-    @FXML private Label label;
+    @FXML private Label keterangan;
     @FXML private TextField email;
+    @FXML private TextField username;
     @FXML private PasswordField password;
     @FXML private ComboBox akses;
+    private ArrayList<Account> accountList;
+    
+    public void initDataAccount(ArrayList<Account> accountList) {
+    	this.accountList = accountList;
+    }
+    
     
     @FXML
     private void tombolDaftar(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("login.fxml"));
-    	Scene utamaScene = new Scene(utamaParent);
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+//    	coba asal input ke accountList
+    	if(akses.getValue().toString()=="ADMIN") {
+    		AdminAccount ac = new AdminAccount(username.getText(),password.getText(),email.getText());
+    		accountList.add(ac);
+    	}else {
+    		UserAccount uc = new UserAccount(username.getText(),password.getText(),email.getText());
+    		accountList.add(uc);
+    	}
+    	String str="Akun yang ada:\n";
+    	for(int i=0;i<accountList.size();i++) {
+    		str += accountList.get(i).toString();
+    	}
+    	System.out.println(str);
     	
+    	
+    	
+//    	Parent utamaParent = FXMLLoader.load(getClass().getResource("login.fxml"));
+//    	Scene utamaScene = new Scene(utamaParent);
+//    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+//    	passAccountList();
+//    	window.setScene(utamaScene);
+//    	window.show();
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("login.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	LoginController controller = loader.getController();
+    	controller.initDataAccount(accountList);
+    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setScene(utamaScene);
     	window.show();
     }
     
-    @FXML
-    private void daftarSekarang() {
-    	System.out.println("daftar lure");
+    private void passAccountList() throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("login.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	LoginController controller = loader.getController();
+    	controller.initDataAccount(accountList);
     }
+    
     
 
     @Override

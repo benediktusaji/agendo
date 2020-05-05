@@ -51,7 +51,7 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </Label>
-            <TextField maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
+            <TextField fx:id="email" maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </Label>
-            <PasswordField maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+            <PasswordField fx:id="password" maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
@@ -81,6 +81,6 @@
             <Image url="@../images/amplas.png" />
          </image>
       </ImageView>
-      <Label layoutX="220.0" layoutY="427.0" text="mencoba lagi" />
+      <Label fx:id="keterangan" layoutX="96.0" layoutY="427.0" prefHeight="17.0" prefWidth="101.0" />
    </children>
 </AnchorPane>

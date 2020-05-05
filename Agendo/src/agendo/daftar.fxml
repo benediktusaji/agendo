@@ -22,7 +22,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1061c9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agendo.DaftarController">
    <children>
-      <VBox layoutX="474.0" layoutY="72.0" prefHeight="354.0" prefWidth="220.0" spacing="10.0">
+      <VBox layoutX="474.0" layoutY="46.0" prefHeight="421.0" prefWidth="220.0" spacing="10.0">
          <children>
             <Label text="Daftar" textFill="#f2f2f2">
                <font>
@@ -37,7 +37,17 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </Label>
-            <TextField maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
+            <TextField fx:id="email" maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="10.0" layoutY="74.0" text="username" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" layoutX="10.0" layoutY="102.0" maxHeight="39.0" minHeight="30.0" prefHeight="30.0">
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
@@ -47,7 +57,7 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </Label>
-            <PasswordField maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+            <PasswordField fx:id="password" maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
@@ -73,5 +83,6 @@
             <Image url="@../images/amplas.png" />
          </image>
       </ImageView>
+      <Label fx:id="keterangan" layoutX="82.0" layoutY="410.0" />
    </children>
 </AnchorPane>
