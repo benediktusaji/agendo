@@ -13,25 +13,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.scene.Node;
 
 /**
  *
  * @author USER
  */
-public class LoginController implements Initializable {
+public class DaftarController implements Initializable {
+    
+    @FXML private Label label;
+    @FXML private TextField email;
+    @FXML private PasswordField password;
+    @FXML private ComboBox akses;
     
     @FXML
-    private Label label;
-    
-    
-    @FXML
-    private void tombolLogin(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
+    private void tombolDaftar(ActionEvent event) throws IOException {
+    	Parent utamaParent = FXMLLoader.load(getClass().getResource("login.fxml"));
     	Scene utamaScene = new Scene(utamaParent);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	
@@ -40,24 +44,16 @@ public class LoginController implements Initializable {
     }
     
     @FXML
-    private void daftarSekarang(ActionEvent event) throws IOException {
-    	Parent utamaParent = FXMLLoader.load(getClass().getResource("daftar.fxml"));
-    	Scene utamaScene = new Scene(utamaParent);
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	
-    	window.setScene(utamaScene);
-    	window.show();
+    private void daftarSekarang() {
+    	System.out.println("daftar lure");
     }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    	akses.getItems().addAll("USER","ADMIN");
+    	akses.setValue("USER");
     }    
     
 }

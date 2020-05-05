@@ -20,25 +20,11 @@
 
 <!--Font.loadFont(getClass().getResourceAsStream("/fonts/Helvetica Neu Bol.ttf"), 14);-->
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1061c9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agendo.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #1061c9;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agendo.DaftarController">
    <children>
-      <VBox layoutX="507.0" layoutY="378.0" prefHeight="115.0" prefWidth="220.0" spacing="5.0">
+      <VBox layoutX="474.0" layoutY="72.0" prefHeight="354.0" prefWidth="220.0" spacing="10.0">
          <children>
-            <Label text="Belum punya akun?" textFill="#f2f2f2">
-               <font>
-                  <Font name="Verdana" size="14.0" />
-               </font>
-            </Label>
-            <Hyperlink onAction="#daftarSekarang" text="Daftar sekarang!" textFill="#f2f2f2">
-               <font>
-                  <Font name="Verdana" size="14.0" />
-               </font>
-            </Hyperlink>
-         </children>
-      </VBox>
-      <VBox layoutX="474.0" layoutY="121.0" prefHeight="249.0" prefWidth="220.0" spacing="10.0">
-         <children>
-            <Label text="Login" textFill="#f2f2f2">
+            <Label text="Daftar" textFill="#f2f2f2">
                <font>
                   <Font name="HoloLens MDL2 Assets" size="31.0" />
                </font>
@@ -66,7 +52,13 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </PasswordField>
-            <Button mnemonicParsing="false" onAction="#tombolLogin" style="-fx-background-color: #37b05c;" text="Login" textFill="#f2f2f2">
+            <Label layoutX="10.0" layoutY="142.0" text="akses" textFill="#f2f2f2">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="akses" prefHeight="25.0" prefWidth="102.0" />
+            <Button mnemonicParsing="false" onAction="#tombolDaftar" style="-fx-background-color: #37b05c;" text="Daftar" textFill="#f2f2f2">
                <VBox.margin>
                   <Insets left="70.0" top="10.0" />
                </VBox.margin>
@@ -81,6 +73,5 @@
             <Image url="@../images/amplas.png" />
          </image>
       </ImageView>
-      <Label layoutX="220.0" layoutY="427.0" text="mencoba lagi" />
    </children>
 </AnchorPane>

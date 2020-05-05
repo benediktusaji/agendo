@@ -7,9 +7,6 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -22,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -128,13 +127,33 @@ public class UtamaController implements Initializable {
     			if(count<hari) {
     				Label angka = new Label();
 					angka.setText(" ");
-					grid.add(angka, j, i);
+					grid.add(angka, j, i);    				
 					count++;
     			}else {
     				if(day<=lastday) {
-    					Label angka = new Label();
-    					angka.setText(""+day);
-    					grid.add(angka, j, i);
+    					if(day==12) {
+    						Image image = new Image(getClass().getResourceAsStream("/images/poin12.png"));
+    	    				ImageView iv = new ImageView(image);
+    	    				iv.setFitHeight(35); 
+    	    			    iv.setFitWidth(35); 
+    	    				grid.add(iv, j, i);
+    					}else if(day==24){
+    						Image image = new Image(getClass().getResourceAsStream("/images/poin24.png"));
+    	    				ImageView iv = new ImageView(image);
+    	    				iv.setFitHeight(35); 
+    	    			    iv.setFitWidth(35); 
+    	    			    grid.add(iv, j, i);
+    					}else if(day==17){
+    						Image image = new Image(getClass().getResourceAsStream("/images/poin17.png"));
+    	    				ImageView iv = new ImageView(image);
+    	    				iv.setFitHeight(35); 
+    	    			    iv.setFitWidth(35); 
+    	    			    grid.add(iv, j, i);
+    					}else{    						
+    						Label angka = new Label();
+    						angka.setText(""+day);
+    						grid.add(angka, j, i);    						
+    					}
     					day++;    				
     				}else {
     					break;
