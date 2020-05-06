@@ -131,29 +131,12 @@ public class UtamaController implements Initializable {
 					count++;
     			}else {
     				if(day<=lastday) {
-    					if(day==12) {
-    						Image image = new Image(getClass().getResourceAsStream("/images/poin12.png"));
-    	    				ImageView iv = new ImageView(image);
-    	    				iv.setFitHeight(35); 
-    	    			    iv.setFitWidth(35); 
-    	    				grid.add(iv, j, i);
-    					}else if(day==24){
-    						Image image = new Image(getClass().getResourceAsStream("/images/poin24.png"));
-    	    				ImageView iv = new ImageView(image);
-    	    				iv.setFitHeight(35); 
-    	    			    iv.setFitWidth(35); 
-    	    			    grid.add(iv, j, i);
-    					}else if(day==17){
-    						Image image = new Image(getClass().getResourceAsStream("/images/poin17.png"));
-    	    				ImageView iv = new ImageView(image);
-    	    				iv.setFitHeight(35); 
-    	    			    iv.setFitWidth(35); 
-    	    			    grid.add(iv, j, i);
-    					}else{    						
-    						Label angka = new Label();
-    						angka.setText(""+day);
-    						grid.add(angka, j, i);    						
-    					}
+						String str = "/images/Icon Tanggal White/"+day+".png";
+						Image image = new Image(getClass().getResourceAsStream(str));
+	    				ImageView iv = new ImageView(image);
+	    				iv.setFitHeight(35); 
+	    			    iv.setFitWidth(35); 
+	    				grid.add(iv, j, i);
     					day++;    				
     				}else {
     					break;
