@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -34,7 +35,7 @@
                     </rowConstraints>
                   </GridPane>
                   <Button layoutX="80.0" layoutY="459.0" mnemonicParsing="false" onAction="#tombolPopulate" text="populate" />
-                  <HBox layoutX="41.0" layoutY="93.0" prefHeight="41.0" prefWidth="485.0" spacing="45.0">
+                  <HBox layoutX="41.0" layoutY="93.0" prefHeight="41.0" prefWidth="485.0" spacing="40.0">
                      <children>
                         <Label text="Min" textFill="#f2f2f2">
                            <font>
@@ -72,6 +73,9 @@
                            </font>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </HBox>
                   <ComboBox fx:id="bulan" layoutX="14.0" layoutY="28.0" onAction="#tombolBulan" prefHeight="25.0" prefWidth="105.0" />
                   <Label fx:id="jumlahHari" layoutX="144.0" layoutY="32.0" text="Label" />

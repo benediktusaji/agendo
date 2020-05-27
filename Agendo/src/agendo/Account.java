@@ -8,7 +8,7 @@ public class Account {
 	private String email;
 	
 	
-	public Account(String username, String password, String email) {
+	public Account(String username, String email, String password) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -22,6 +22,10 @@ public class Account {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getUsername() {
+		return username;
 	}
 	
 	public String toString() {

@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Event {
 	private String judul;
-	private Date tanggal;
+	private String tanggal;
 	private String deskripsi;
 	private String kategori;  //bisa dikembangin jadi class sendiri
 	
-	public Event(String judul, Date tanggal, String deskripsi, String kategori) {
+	public Event(String judul, String tanggal, String deskripsi, String kategori) {
 		this.judul = judul;
 		this.tanggal = tanggal;
 		this.deskripsi = deskripsi;
@@ -20,20 +20,18 @@ public class Event {
 			this.judul = newData;
 		}else if(indikator.equals("deskripsi")) {
 			this.deskripsi = newData;
-		}else {
+		}else if(indikator.equals("kategori")){
 			this.kategori = newData;
+		}else {
+			this.tanggal = newData;
 		}
-	}
-	
-	public void editEvent(Date newData) {
-		this.tanggal = newData;
 	}
 
 	public String getJudul() {
 		return judul;
 	}
 
-	public Date getTanggal() {
+	public String getTanggal() {
 		return tanggal;
 	}
 

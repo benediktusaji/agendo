@@ -35,10 +35,46 @@ public class DaftarController implements Initializable {
     @FXML private PasswordField password;
     @FXML private ComboBox akses;
     private ArrayList<Account> accountList;
+    private DatabaseAgendo da = new DatabaseAgendo();
     
-    public void initDataAccount(ArrayList<Account> accountList) {
-    	this.accountList = accountList;
+    
+//    public void initDataAccount(ArrayList<Account> accountList) {
+//    	this.accountList = accountList;
+//    }
+    
+    @FXML
+    private void addUser(ActionEvent event) throws IOException {
+    	if(checkUsername() && checkEmail()) { //check apakah email dan username sudah dipakai
+    		da.insertNewAccount(username.getText(), email.getText(), password.getText(), akses.getValue().toString());
+    		FXMLLoader loader = new FXMLLoader();
+        	loader.setLocation(getClass().getResource("login.fxml"));
+        	Parent utamaParent = loader.load();
+        	
+        	Scene utamaScene = new Scene(utamaParent);
+        	LoginController controller = loader.getController();
+        	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        	window.setScene(utamaScene);
+        	window.show();
+    	}
     }
+    
+    private boolean checkUsername() {
+    	for(int i=0;i<accountList.size();i++) {
+    		if(username.getText().equalsIgnoreCase(accountList.get(i).getUsername())) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    private boolean checkEmail() {
+    	for(int i=0;i<accountList.size();i++) {
+    		if(email.getText().equalsIgnoreCase(accountList.get(i).getEmail())) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
     
     
     @FXML
@@ -71,7 +107,7 @@ public class DaftarController implements Initializable {
     	
     	Scene utamaScene = new Scene(utamaParent);
     	LoginController controller = loader.getController();
-    	controller.initDataAccount(accountList);
+//    	controller.initDataAccount(accountList);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setScene(utamaScene);
     	window.show();
@@ -84,7 +120,7 @@ public class DaftarController implements Initializable {
     	
     	Scene utamaScene = new Scene(utamaParent);
     	LoginController controller = loader.getController();
-    	controller.initDataAccount(accountList);
+//    	controller.initDataAccount(accountList);
     }
     
     
@@ -94,6 +130,7 @@ public class DaftarController implements Initializable {
         // TODO
     	akses.getItems().addAll("USER","ADMIN");
     	akses.setValue("USER");
+    	accountList = da.selectAllAccount();
     }    
     
 }

@@ -33,6 +33,9 @@
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </Hyperlink>
          </children>
       </VBox>

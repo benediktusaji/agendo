@@ -34,11 +34,12 @@ public class LoginController implements Initializable {
     @FXML private TextField email;
     @FXML private PasswordField password;
     private ArrayList<Account> accountList = new ArrayList<Account>();
+    private DatabaseAgendo da = new DatabaseAgendo();
     
-    public void initDataAccount(ArrayList<Account> accountList) {
-    	this.accountList = accountList;
-    }
-    
+//    public void initDataAccount(ArrayList<Account> accountList) {
+//    	this.accountList = accountList;
+//    }
+//    
     @FXML
     private void tombolLogin(ActionEvent event) throws IOException {
     	String str="Akun yang ada:\n";
@@ -47,10 +48,10 @@ public class LoginController implements Initializable {
     	}
     	System.out.println(str);
     	if(cekAkun()) {
+    		System.out.println("harusnya masuk");
     		Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
     		Scene utamaScene = new Scene(utamaParent);
     		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    		
     		window.setScene(utamaScene);
     		window.show();    		
     	}
@@ -58,21 +59,11 @@ public class LoginController implements Initializable {
     
     @FXML
     private void daftarSekarang(ActionEvent event) throws IOException {
-//    	Parent utamaParent = FXMLLoader.load(getClass().getResource("daftar.fxml"));
-//    	Scene utamaScene = new Scene(utamaParent);
-//    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-//    	passAccountList();
-//    	
-//    	window.setScene(utamaScene);
-//    	window.show();
-    	
     	FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("daftar.fxml"));
     	Parent utamaParent = loader.load();
     	
     	Scene utamaScene = new Scene(utamaParent);
-    	DaftarController controller = loader.getController();
-    	controller.initDataAccount(accountList);
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
     	window.setScene(utamaScene);
     	window.show();
@@ -85,25 +76,25 @@ public class LoginController implements Initializable {
     	
     	Scene utamaScene = new Scene(utamaParent);
     	DaftarController controller = loader.getController();
-    	controller.initDataAccount(accountList);
+//    	controller.initDataAccount(accountList);
     }
     
 //    cek apakah akun ada di list
     private boolean cekAkun() {
+    	System.out.println("cekcek");
     	boolean masuk=false;
     	for(int i=0;i<accountList.size();i++) {
     		if(accountList.get(i).getEmail().equals(email.getText())&&accountList.get(i).getPassword().equals(password.getText())) {
     			masuk=true;
     		}
     	}
-    	
     	return masuk;
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    	
+    	accountList = da.selectAllAccount();
     }    
     
 }
