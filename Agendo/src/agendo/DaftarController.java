@@ -81,10 +81,10 @@ public class DaftarController implements Initializable {
     private void tombolDaftar(ActionEvent event) throws IOException {
 //    	coba asal input ke accountList
     	if(akses.getValue().toString()=="ADMIN") {
-    		AdminAccount ac = new AdminAccount(username.getText(),password.getText(),email.getText());
+    		AdminAccount ac = new AdminAccount(username.getText(),password.getText(),email.getText(),0);
     		accountList.add(ac);
     	}else {
-    		UserAccount uc = new UserAccount(username.getText(),password.getText(),email.getText());
+    		UserAccount uc = new UserAccount(username.getText(),password.getText(),email.getText(),0);
     		accountList.add(uc);
     	}
     	String str="Akun yang ada:\n";

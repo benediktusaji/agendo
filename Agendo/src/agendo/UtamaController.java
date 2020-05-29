@@ -36,6 +36,7 @@ public class UtamaController implements Initializable {
     @FXML private ComboBox bulan;
     @FXML private ComboBox tahun;
     @FXML private AnchorPane kanan;
+    private UserAccount ua;
     private int hari;
     private int lastday;
     private Calendar calendar = Calendar.getInstance();
@@ -166,6 +167,10 @@ public class UtamaController implements Initializable {
     	kanan.getChildren().setAll(node);
     }
     
+    private void initData(int userID) {
+    	
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -174,7 +179,14 @@ public class UtamaController implements Initializable {
     	tahun.getItems().addAll("2020","2021","2022","2023","2024","2025");
     	tahun.setValue("2020");
     	this.tombolTahun();
-    
+    	Node node=null;
+    	try {
+			node = (Node)FXMLLoader.load(getClass().getResource("listEvent.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	kanan.getChildren().setAll(node);
     }    
     
 }

@@ -36,6 +36,7 @@ public class LoginController implements Initializable {
     private ArrayList<Account> accountList = new ArrayList<Account>();
     private DatabaseAgendo da = new DatabaseAgendo();
     private int status;
+    private int accountID;
     
 //    public void initDataAccount(ArrayList<Account> accountList) {
 //    	this.accountList = accountList;
@@ -61,6 +62,9 @@ public class LoginController implements Initializable {
     			Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
     			Scene utamaScene = new Scene(utamaParent);
     			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    			
+    			
+    			
     			window.setScene(utamaScene);
     			window.show();    		    			
     		}

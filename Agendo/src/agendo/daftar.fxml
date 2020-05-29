@@ -73,7 +73,7 @@
                   <Insets left="70.0" top="10.0" />
                </VBox.margin>
                <font>
-                  <Font name="Verdana Bold" size="14.0" />
+                  <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
          </children>

@@ -29,20 +29,14 @@ import javafx.stage.Stage;
  *
  * @author USER
  */
-public class AddEventController implements Initializable {
-	@FXML private AnchorPane kanan;
+public class ListEventController implements Initializable {
+  
     
-    @FXML
-    private void cancel() throws IOException {
-    	Node node;
-    	node = (Node)FXMLLoader.load(getClass().getResource("listEvent.fxml"));
-    	kanan.getChildren().setAll(node);
-    }
-	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
+    
     }    
     
 }

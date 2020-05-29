@@ -52,10 +52,10 @@ public class DatabaseAgendo {
             // loop through the result set  
             while (rs.next()) {  
             	if(rs.getString("status")=="ADMIN") {
-            		AdminAccount ac = new AdminAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"));
+            		AdminAccount ac = new AdminAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),0);
             		accountList.add(ac);
             	}else {
-            		UserAccount uc = new UserAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"));
+            		UserAccount uc = new UserAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),1);
             		accountList.add(uc);
             	}
             }  
