@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -34,6 +35,7 @@ public class UtamaController implements Initializable {
     @FXML private GridPane grid = new GridPane();
     @FXML private ComboBox bulan;
     @FXML private ComboBox tahun;
+    @FXML private AnchorPane kanan;
     private int hari;
     private int lastday;
     private Calendar calendar = Calendar.getInstance();
@@ -155,6 +157,13 @@ public class UtamaController implements Initializable {
     	
     	window.setScene(utamaScene);
     	window.show();
+    }
+    
+    @FXML
+    private void addEvent() throws IOException {
+    	Node node;
+    	node = (Node)FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+    	kanan.getChildren().setAll(node);
     }
     
     @Override

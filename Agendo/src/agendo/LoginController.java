@@ -35,6 +35,7 @@ public class LoginController implements Initializable {
     @FXML private PasswordField password;
     private ArrayList<Account> accountList = new ArrayList<Account>();
     private DatabaseAgendo da = new DatabaseAgendo();
+    private int status;
     
 //    public void initDataAccount(ArrayList<Account> accountList) {
 //    	this.accountList = accountList;
@@ -48,12 +49,21 @@ public class LoginController implements Initializable {
     	}
     	System.out.println(str);
     	if(cekAkun()) {
-    		System.out.println("harusnya masuk");
-    		Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
-    		Scene utamaScene = new Scene(utamaParent);
-    		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    		window.setScene(utamaScene);
-    		window.show();    		
+    		if(status==0) {
+    			System.out.println("ADMin lur");
+    			Parent utamaParent = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
+    			Scene utamaScene = new Scene(utamaParent);
+    			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    			window.setScene(utamaScene);
+    			window.show(); 
+    		}else {
+    			System.out.println("harusnya masuk");
+    			Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
+    			Scene utamaScene = new Scene(utamaParent);
+    			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    			window.setScene(utamaScene);
+    			window.show();    		    			
+    		}
     	}
     }
     
@@ -85,6 +95,13 @@ public class LoginController implements Initializable {
     	boolean masuk=false;
     	for(int i=0;i<accountList.size();i++) {
     		if(accountList.get(i).getEmail().equals(email.getText())&&accountList.get(i).getPassword().equals(password.getText())) {
+    			if(accountList.get(i) instanceof AdminAccount) {
+    				System.out.println("Statusnya admin");
+    				status=0;
+    			}else {
+    				System.out.println("Statusnya user");
+    				status=1;
+    			}
     			masuk=true;
     		}
     	}
