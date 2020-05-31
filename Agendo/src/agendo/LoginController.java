@@ -36,12 +36,8 @@ public class LoginController implements Initializable {
     private ArrayList<Account> accountList = new ArrayList<Account>();
     private DatabaseAgendo da = new DatabaseAgendo();
     private int status;
-    private int accountID;
-    
-//    public void initDataAccount(ArrayList<Account> accountList) {
-//    	this.accountList = accountList;
-//    }
-//    
+    private int accountID = 0;
+
     @FXML
     private void tombolLogin(ActionEvent event) throws IOException {
     	String str="Akun yang ada:\n";
@@ -49,26 +45,26 @@ public class LoginController implements Initializable {
     		str += accountList.get(i).toString();
     	}
     	System.out.println(str);
-    	if(cekAkun()) {
-    		if(status==0) {
-    			System.out.println("ADMin lur");
-    			Parent utamaParent = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-    			Scene utamaScene = new Scene(utamaParent);
-    			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    			window.setScene(utamaScene);
-    			window.show(); 
-    		}else {
-    			System.out.println("harusnya masuk");
-    			Parent utamaParent = FXMLLoader.load(getClass().getResource("utama.fxml"));
-    			Scene utamaScene = new Scene(utamaParent);
-    			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    			
-    			
-    			
-    			window.setScene(utamaScene);
-    			window.show();    		    			
-    		}
-    	}
+    	cekAkun();
+    	if(status==0) {
+			System.out.println("ADMin lur");
+			Parent utamaParent = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
+			Scene utamaScene = new Scene(utamaParent);
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			window.setScene(utamaScene);
+			window.show(); 
+		}else {
+			FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(getClass().getResource("utama.fxml"));
+	    	Parent utamaParent = loader.load();
+	    	
+	    	Scene utamaScene = new Scene(utamaParent);
+	    	UtamaController controller = loader.getController();
+	    	controller.initData(accountID);
+	    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
+	    	window.setScene(utamaScene);
+	    	window.show(); 		    			
+		}
     }
     
     @FXML
@@ -102,8 +98,10 @@ public class LoginController implements Initializable {
     			if(accountList.get(i) instanceof AdminAccount) {
     				System.out.println("Statusnya admin");
     				status=0;
-    			}else {
+    			}else if(accountList.get(i) instanceof UserAccount) {
     				System.out.println("Statusnya user");
+    				accountID = accountList.get(i).getAccountID();
+    				System.out.println(""+accountID);
     				status=1;
     			}
     			masuk=true;

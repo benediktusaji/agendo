@@ -37,6 +37,7 @@ public class UtamaController implements Initializable {
     @FXML private ComboBox tahun;
     @FXML private AnchorPane kanan;
     private UserAccount ua;
+    private int accountID = 0;
     private int hari;
     private int lastday;
     private Calendar calendar = Calendar.getInstance();
@@ -164,11 +165,16 @@ public class UtamaController implements Initializable {
     private void addEvent() throws IOException {
     	Node node;
     	node = (Node)FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("addEvent.fxml"));
+		AddEventController controller = loader.getController();
+		controller.initData(ua);
     	kanan.getChildren().setAll(node);
     }
     
-    private void initData(int userID) {
-    	
+    public void initData(int accountID) {
+    	this.accountID = accountID;
+    	System.out.println("berhasil buat user");
     }
     
     @Override

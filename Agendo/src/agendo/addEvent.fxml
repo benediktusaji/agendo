@@ -11,13 +11,13 @@
       <VBox prefHeight="500.0" prefWidth="250.0" spacing="10.0" style="-fx-background-color: #f2f2f2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="Tanggal" />
-            <DatePicker />
+            <DatePicker fx:id="tanggal" />
             <Label text="Judul" />
-            <TextField />
+            <TextField fx:id="judul" />
             <Label text="Kategori" />
-            <TextField />
+            <TextField fx:id="kategori" />
             <Label text="Deskripsi" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="deskripsi" prefHeight="200.0" prefWidth="200.0" />
             <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="240.0" spacing="70.0">
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: #37b05c;" text="Save" textFill="#f2f2f2" />

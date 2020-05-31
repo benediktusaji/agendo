@@ -7,23 +7,17 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 /**
  *
@@ -31,7 +25,13 @@ import javafx.stage.Stage;
  */
 public class AddEventController implements Initializable {
 	@FXML private AnchorPane kanan;
-    
+	@FXML private TextField judul;
+	@FXML private TextField kategori;
+	@FXML private TextArea deskripsi;
+	@FXML private DatePicker tanggal;
+	private UserAccount ua;
+	private DatabaseAgendo da = new DatabaseAgendo();
+	
     @FXML
     private void cancel() throws IOException {
     	Node node;
@@ -39,6 +39,20 @@ public class AddEventController implements Initializable {
     	kanan.getChildren().setAll(node);
     }
 	
+    public void initData(UserAccount ua) {
+    	this.ua = ua;
+    }
+    
+    @FXML
+    private void save() throws IOException {
+    	String date = tanggal.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    	Event e = new Event(judul.getText(),date,kategori.getText(),deskripsi.getText());
+    	ua.addEvent(e);
+    	da.addEvent(ua, e);
+    	cancel();
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

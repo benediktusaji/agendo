@@ -49,20 +49,63 @@ public class DatabaseAgendo {
             Connection conn = this.connect();  
             Statement stmt  = conn.createStatement();  
             ResultSet rs    = stmt.executeQuery(sql);  
-            // loop through the result set  
+         // loop through the result set  
             while (rs.next()) {  
-            	if(rs.getString("status")=="ADMIN") {
-            		AdminAccount ac = new AdminAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),0);
+            	if(rs.getString("status").equalsIgnoreCase("admin")) {
+            		AdminAccount ac = new AdminAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),Integer.parseInt(rs.getString("account_id")));
+            		System.out.println("Found Admin Account");
             		accountList.add(ac);
             	}else {
-            		UserAccount uc = new UserAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),1);
+            		UserAccount uc = new UserAccount(rs.getString("username"),rs.getString("email"),rs.getString("password"),Integer.parseInt(rs.getString("account_id")));
+            		System.out.println("Found User Account");
+            		uc.setListEvent(this.selectEvent(uc));
             		accountList.add(uc);
             	}
-            }  
+            }   
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
             System.out.println("ilang");
         }
 		return accountList;  
+	}
+	
+	public ArrayList<Event> selectEvent(UserAccount ua){
+		String sql = "SELECT * FROM event WHERE user_id="+ua.getAccountID();  
+		ArrayList<Event> eventList = new ArrayList<Event>();         
+        try {  
+            Connection conn = this.connect();  
+            Statement stmt  = conn.createStatement();  
+            ResultSet rs    = stmt.executeQuery(sql);  
+         // loop through the result set  
+            while (rs.next()) {  
+            	Event e = new Event(rs.getString("judul"),rs.getString("tanggal"),rs.getString("deskripsi"),rs.getString("kategori"));
+            	eventList.add(e);
+            }   
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            System.out.println("ilang");
+        }
+		return eventList; 
+	}
+	
+	public void addEvent(UserAccount ua, Event ev) {
+		String sql = "INSERT INTO event(title,category,date,detail_event,user_id) VALUES(?,?,?,?,?)";  
+		         
+        try {  
+            Connection conn = this.connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setString(1, ev.getJudul());  
+            pstmt.setString(2, ev.getKategori());
+            pstmt.setString(3, ev.getTanggal());
+            pstmt.setString(4, ev.getDeskripsi());
+            pstmt.setInt(5, ua.getAccountID());
+            pstmt.executeUpdate();
+            System.out.println("Sukses nambah event di user");
+         // loop through the result set  
+              
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            System.out.println("ilang");
+        }
 	}
 }
