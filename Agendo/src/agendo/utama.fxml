@@ -37,7 +37,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
-                  <HBox layoutX="41.0" layoutY="93.0" prefHeight="41.0" prefWidth="485.0" spacing="40.0">
+                  <HBox alignment="TOP_CENTER" layoutX="41.0" layoutY="93.0" prefHeight="41.0" prefWidth="485.0" spacing="30.0">
                      <children>
                         <Label text="Min" textFill="#f2f2f2">
                            <font>
@@ -83,6 +83,7 @@
                   <Label fx:id="jumlahHari" layoutX="144.0" layoutY="32.0" text="Label" />
                   <ComboBox fx:id="tahun" layoutX="427.0" layoutY="28.0" onAction="#tombolTahun" prefHeight="25.0" prefWidth="82.0" />
                   <Button layoutX="442.0" layoutY="459.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
+                  <Button layoutX="249.0" layoutY="458.0" mnemonicParsing="false" text="Profile" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="kanan" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #f2f2f2;">
