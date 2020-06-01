@@ -70,15 +70,17 @@ public class DatabaseAgendo {
 	}
 	
 	public ArrayList<Event> selectEvent(UserAccount ua){
-		String sql = "SELECT * FROM event WHERE user_id="+ua.getAccountID();  
+		String sql = "SELECT * FROM event WHERE user_id="+ua.getAccountID();
+		System.out.println(sql);
 		ArrayList<Event> eventList = new ArrayList<Event>();         
         try {  
-            Connection conn = this.connect();  
+        	Connection conn = this.connect();  
             Statement stmt  = conn.createStatement();  
-            ResultSet rs    = stmt.executeQuery(sql);  
+            ResultSet rs    = stmt.executeQuery(sql);   
          // loop through the result set  
             while (rs.next()) {  
-            	Event e = new Event(rs.getString("judul"),rs.getString("tanggal"),rs.getString("deskripsi"),rs.getString("kategori"));
+            	System.out.println("Event Found");
+            	Event e = new Event(rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
             	eventList.add(e);
             }   
         } catch (SQLException e) {  

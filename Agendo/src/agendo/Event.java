@@ -42,5 +42,7 @@ public class Event {
 	public String getKategori() {
 		return kategori;
 	}
-	
+	public String toString() {
+		return tanggal+" "+judul+" "+kategori+" "+deskripsi;
+	}
 }

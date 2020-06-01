@@ -7,6 +7,7 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -30,7 +31,20 @@ import javafx.stage.Stage;
  * @author USER
  */
 public class ListEventController implements Initializable {
-  
+	
+	private UserAccount ua;
+	private ArrayList<Event> eventList;
+	private DatabaseAgendo da = new DatabaseAgendo();
+	
+    public void initData(UserAccount ua) {
+    	this.ua = ua;
+    	ua.setListEvent(da.selectEvent(ua));
+    	System.out.println("berhasil oper user ke list event");
+    	System.out.println(ua.getListEvent().size());
+    	for(int i=0;i<ua.getListEvent().size();i++) {
+    		System.out.println(ua.getListEvent().get(i).toString());
+    	}
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

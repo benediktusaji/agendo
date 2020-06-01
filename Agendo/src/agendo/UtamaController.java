@@ -23,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -162,19 +163,29 @@ public class UtamaController implements Initializable {
     }
     
     @FXML
-    private void addEvent() throws IOException {
-    	Node node;
-    	node = (Node)FXMLLoader.load(getClass().getResource("addEvent.fxml"));
-    	FXMLLoader loader = new FXMLLoader();
+    private void addEvent(ActionEvent event) throws IOException {
+//    	Node node;
+//    	FXMLLoader loader = new FXMLLoader();
+//    	loader.setLocation(getClass().getResource("addEvent.fxml"));
+//    	node = (Node)FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+//		AddEventController controller = loader.getController();
+//		controller.initData(ua);
+//    	kanan.getChildren().setAll(node);
+    	
+		FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("addEvent.fxml"));
-		AddEventController controller = loader.getController();
-		controller.initData(ua);
-    	kanan.getChildren().setAll(node);
+    	Pane utamaParent = loader.load();
+    	
+    	AddEventController controller = loader.getController();
+    	controller.initData(ua);	
+    	kanan.getChildren().setAll(utamaParent);
     }
     
-    public void initData(int accountID) {
-    	this.accountID = accountID;
+    public void initData(UserAccount ua) {
+    	this.ua = ua;
     	System.out.println("berhasil buat user");
+
+    	
     }
     
     @Override
@@ -188,6 +199,17 @@ public class UtamaController implements Initializable {
     	Node node=null;
     	try {
 			node = (Node)FXMLLoader.load(getClass().getResource("listEvent.fxml"));
+//			FXMLLoader loader = new FXMLLoader();
+//	    	loader.setLocation(getClass().getResource("listEvent.fxml"));
+//	    	ListEventController controller = loader.getController();
+//			controller.initData(ua);
+			
+//			FXMLLoader loader = new FXMLLoader();
+//	    	loader.setLocation(getClass().getResource("addEvent.fxml"));
+//	    	Pane utamaParent = loader.load();
+//	    	
+//	    	AddEventController controller = loader.getController();
+//	    	controller.initData(ua);	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

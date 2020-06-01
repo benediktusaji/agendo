@@ -37,6 +37,7 @@ public class LoginController implements Initializable {
     private DatabaseAgendo da = new DatabaseAgendo();
     private int status;
     private int accountID = 0;
+    private UserAccount ua;
 
     @FXML
     private void tombolLogin(ActionEvent event) throws IOException {
@@ -54,13 +55,15 @@ public class LoginController implements Initializable {
 			window.setScene(utamaScene);
 			window.show(); 
 		}else {
+			System.out.println("Jumlah event milik user: "+ua.getListEvent().size());
+			System.out.println("Pindah scene ke utama");
 			FXMLLoader loader = new FXMLLoader();
 	    	loader.setLocation(getClass().getResource("utama.fxml"));
 	    	Parent utamaParent = loader.load();
 	    	
 	    	Scene utamaScene = new Scene(utamaParent);
 	    	UtamaController controller = loader.getController();
-	    	controller.initData(accountID);
+	    	controller.initData(ua);
 	    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
 	    	window.setScene(utamaScene);
 	    	window.show(); 		    			
@@ -100,9 +103,10 @@ public class LoginController implements Initializable {
     				status=0;
     			}else if(accountList.get(i) instanceof UserAccount) {
     				System.out.println("Statusnya user");
-    				accountID = accountList.get(i).getAccountID();
-    				System.out.println(""+accountID);
+    				ua = (UserAccount) accountList.get(i);
+//    				ua.setListEvent(da.selectEvent(ua));
     				status=1;
+//    				System.out.println("lewat");
     			}
     			masuk=true;
     		}

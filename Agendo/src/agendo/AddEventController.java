@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -29,19 +30,31 @@ public class AddEventController implements Initializable {
 	@FXML private TextField kategori;
 	@FXML private TextArea deskripsi;
 	@FXML private DatePicker tanggal;
-	private UserAccount ua;
+	private UserAccount ua=null;
 	private DatabaseAgendo da = new DatabaseAgendo();
 	
     @FXML
     private void cancel() throws IOException {
-    	Node node;
-    	node = (Node)FXMLLoader.load(getClass().getResource("listEvent.fxml"));
+//    	Node node;
+//    	node = (Node)FXMLLoader.load(getClass().getResource("listEvent.fxml"));
+//    	kanan.getChildren().setAll(node);
+//    	
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("listEvent.fxml"));
+    	Pane node = loader.load();
+    	
+    	ListEventController controller = loader.getController();
+    	controller.initData(ua);	
     	kanan.getChildren().setAll(node);
+    	
     }
 	
     public void initData(UserAccount ua) {
     	this.ua = ua;
+    	System.out.println(ua.getAccountID()+" boss");
     }
+    
+    //tombol delete
     
     @FXML
     private void save() throws IOException {
