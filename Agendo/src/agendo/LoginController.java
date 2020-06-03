@@ -38,6 +38,7 @@ public class LoginController implements Initializable {
     private int status;
     private int accountID = 0;
     private UserAccount ua;
+    private AdminAccount ac;
 
     @FXML
     private void tombolLogin(ActionEvent event) throws IOException {
@@ -49,11 +50,16 @@ public class LoginController implements Initializable {
     	cekAkun();
     	if(status==0) {
 			System.out.println("ADMin lur");
-			Parent utamaParent = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-			Scene utamaScene = new Scene(utamaParent);
-			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			window.setScene(utamaScene);
-			window.show(); 
+			FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(getClass().getResource("adminPage.fxml"));
+	    	Parent utamaParent = loader.load();
+	    	
+	    	Scene utamaScene = new Scene(utamaParent);
+	    	AdminPageController controller = loader.getController();
+	    	controller.initData(ac);
+	    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
+	    	window.setScene(utamaScene);
+	    	window.show(); 	
 		}else {
 			System.out.println("Jumlah event milik user: "+ua.getListEvent().size());
 			System.out.println("Pindah scene ke utama");
@@ -100,13 +106,12 @@ public class LoginController implements Initializable {
     		if(accountList.get(i).getEmail().equals(email.getText())&&accountList.get(i).getPassword().equals(password.getText())) {
     			if(accountList.get(i) instanceof AdminAccount) {
     				System.out.println("Statusnya admin");
+    				ac = (AdminAccount) accountList.get(i);
     				status=0;
     			}else if(accountList.get(i) instanceof UserAccount) {
     				System.out.println("Statusnya user");
     				ua = (UserAccount) accountList.get(i);
-//    				ua.setListEvent(da.selectEvent(ua));
     				status=1;
-//    				System.out.println("lewat");
     			}
     			masuk=true;
     		}

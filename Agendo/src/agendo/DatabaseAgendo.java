@@ -110,4 +110,26 @@ public class DatabaseAgendo {
             System.out.println("ilang");
         }
 	}
+	
+	public void updateAccount(Account a, String username, String email, String password) {
+		String sql = "UPDATE account SET username = ? , "
+                + "email = ? ,"
+                + "password = ? "
+                + "WHERE account_id = ?";
+		System.out.println(sql);
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, username);
+            pstmt.setString(2, email);
+            pstmt.setString(3, password);
+            pstmt.setString(4, String.valueOf(a.getAccountID()));
+            // update 
+            pstmt.executeUpdate();
+            System.out.println("SUKSES UPDATE DATA");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
 }

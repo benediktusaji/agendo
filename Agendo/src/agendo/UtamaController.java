@@ -219,11 +219,27 @@ public class UtamaController implements Initializable {
     	kanan.getChildren().setAll(utamaParent);
     }
     
-    public void initData(UserAccount ua) {
-    	this.ua = ua;
-    	System.out.println("Jumlah event milik ua: " + ua.getListEvent().size());
-    	eventList = ua.getListEvent();
-    	System.out.println("berhasil passing user ke utama controller");
+    public void initData(Account ua) {
+    	if(ua instanceof UserAccount) {
+    		this.ua = (UserAccount) ua;
+    		System.out.println("Jumlah event milik ua: " + ((UserAccount) ua).getListEvent().size());
+    		eventList = ((UserAccount) ua).getListEvent();
+    		System.out.println("berhasil passing user ke utama controller");    		
+    	}
+    }
+    
+    @FXML
+    public void editAccount(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("editAccount.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	EditAccountController controller = loader.getController();
+    	controller.initData(ua);
+    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
+    	window.setScene(utamaScene);
+    	window.show();
     }
     
     @Override

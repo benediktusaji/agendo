@@ -83,7 +83,7 @@
                   <Label fx:id="jumlahHari" layoutX="144.0" layoutY="32.0" text="Label" />
                   <ComboBox fx:id="tahun" layoutX="427.0" layoutY="28.0" onAction="#tombolTahun" prefHeight="25.0" prefWidth="82.0" />
                   <Button layoutX="442.0" layoutY="459.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
-                  <Button layoutX="249.0" layoutY="458.0" mnemonicParsing="false" text="Profile" />
+                  <Button layoutX="249.0" layoutY="458.0" mnemonicParsing="false" onAction="#editAccount" text="Profile" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="kanan" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="250.0" style="-fx-background-color: #f2f2f2;">

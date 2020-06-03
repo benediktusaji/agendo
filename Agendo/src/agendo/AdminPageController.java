@@ -38,6 +38,8 @@ public class AdminPageController implements Initializable {
 //    @FXML private TableColumn<Account, String> aksiColumn;
     private ArrayList<Account> accountList = new ArrayList<Account>();
     private DatabaseAgendo da = new DatabaseAgendo();
+    private Account acc;
+    
     @FXML
     private void logOut(ActionEvent event) throws IOException {
     	Parent utamaParent = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -48,6 +50,26 @@ public class AdminPageController implements Initializable {
     	window.show();
     }
     
+    public void initData(Account acc) {
+    	this.acc = acc;
+    	System.out.println("Berhasil passing admin ke admin page");
+    }
+
+    @FXML
+    public void editAccount(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("editAccount.fxml"));
+    	Parent utamaParent = loader.load();
+    	
+    	Scene utamaScene = new Scene(utamaParent);
+    	EditAccountController controller = loader.getController();
+    	controller.initData(acc);
+    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
+    	window.setScene(utamaScene);
+    	window.show();
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -55,12 +77,15 @@ public class AdminPageController implements Initializable {
     	namaColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("username"));
     	emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
     	passwordColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
-    	
+    	eventsColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
     	ObservableList<Account> oblist = FXCollections.observableArrayList();
     	for(int i=0;i<accountList.size();i++) {
     		oblist.add(accountList.get(i));
     	}
     	tableView.setItems(oblist);
-    }    
+    }
+
+  
+       
     
 }

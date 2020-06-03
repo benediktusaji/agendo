@@ -15,9 +15,9 @@
          <children>
             <HBox prefHeight="500.0" prefWidth="66.0" style="-fx-background-color: #1061c9;">
                <children>
-                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" onAction="#editAccount" text="Profile" />
                         <Button mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #ed4337;" text="Log out" textFill="#f2f2f2">
                            <VBox.margin>
                               <Insets bottom="10.0" />
