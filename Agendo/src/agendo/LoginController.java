@@ -35,7 +35,7 @@ public class LoginController implements Initializable {
     @FXML private PasswordField password;
     private ArrayList<Account> accountList = new ArrayList<Account>();
     private DatabaseAgendo da = new DatabaseAgendo();
-    private int status;
+    private int status=-1;
     private int accountID = 0;
     private UserAccount ua;
     private AdminAccount ac;
@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
 	    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();   	
 	    	window.setScene(utamaScene);
 	    	window.show(); 	
-		}else {
+		}else if(status==1){
 			System.out.println("Jumlah event milik user: "+ua.getListEvent().size());
 			System.out.println("Pindah scene ke utama");
 			FXMLLoader loader = new FXMLLoader();

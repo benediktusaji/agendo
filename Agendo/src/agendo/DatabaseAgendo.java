@@ -128,6 +128,7 @@ public class DatabaseAgendo {
             // update 
             pstmt.executeUpdate();
             System.out.println("SUKSES UPDATE DATA");
+            //eror handling
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
