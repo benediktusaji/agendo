@@ -59,7 +59,7 @@ public class AddEventController implements Initializable {
     @FXML
     private void save() throws IOException {
     	String date = tanggal.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    	Event e = new Event(judul.getText(),date,kategori.getText(),deskripsi.getText());
+    	Event e = new Event(judul.getText(),date,deskripsi.getText(),kategori.getText());
     	ua.addEvent(e);
     	da.addEvent(ua, e);
     	cancel();

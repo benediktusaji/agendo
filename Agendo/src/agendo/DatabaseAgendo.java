@@ -90,6 +90,29 @@ public class DatabaseAgendo {
 		return eventList; 
 	}
 	
+	public ArrayList<Event> selectEventWithinMonth(UserAccount ua, String tanggal){
+		ArrayList<Event> eventList = new ArrayList<Event>();   
+		String sql = "Select * from event where user_id="+ua.getAccountID()+" AND date like '"+tanggal+"%';";
+		System.out.println(sql);
+		 try {  
+	        	Connection conn = this.connect();  
+	            Statement stmt  = conn.createStatement();  
+	            ResultSet rs    = stmt.executeQuery(sql);   
+	         // loop through the result set  
+	            while (rs.next()) {  
+	            	System.out.println("Event Found");
+	            	Event e = new Event(rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
+	            	eventList.add(e);
+	            }   
+	        } catch (SQLException e) {  
+	            System.out.println(e.getMessage());  
+	            System.out.println("ilang");
+	        }
+		return eventList;
+	}
+	
+	
+	
 	public void addEvent(UserAccount ua, Event ev) {
 		String sql = "INSERT INTO event(title,category,date,detail_event,user_id) VALUES(?,?,?,?,?)";  
 		         

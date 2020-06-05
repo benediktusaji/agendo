@@ -22,7 +22,16 @@
             <TextField />
             <ScrollPane prefHeight="412.0" prefWidth="230.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="228.0">
+                     <children>
+                        <TableView fx:id="tableView" prefHeight="407.0" prefWidth="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="tanggalColumn" prefWidth="75.0" text="Tanggal" />
+                            <TableColumn fx:id="judulColumn" prefWidth="75.0" text="Judul" />
+                              <TableColumn prefWidth="75.0" text="Aksi" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
          </children>

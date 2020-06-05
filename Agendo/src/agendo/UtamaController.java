@@ -45,6 +45,8 @@ public class UtamaController implements Initializable {
     private String targetTahun="2020";
     private String targetBulan="06";
     private Calendar calendar = Calendar.getInstance();
+    private String tujuanTanggal="2020-06-";
+    private int cek=0;
     
 
     private int getLastDateOfMonth(int dateMonth) {
@@ -154,6 +156,7 @@ public class UtamaController implements Initializable {
     		System.out.println(eventList.get(k).getTanggal());
 		}
     	System.out.println("=======================");
+    	tujuanTanggal = targetTahun+"-"+targetBulan+"-";
     	int day=1,count=1;
     	grid.getChildren().clear();
     	for(int i=0;i<6;i++) {
@@ -195,6 +198,15 @@ public class UtamaController implements Initializable {
     			}
     		}
     	}
+    	if(cek>0) {
+    		try {
+    			this.refreshListEvent();
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}    		
+    	}
+    	cek++;
     }
     
     
@@ -218,6 +230,18 @@ public class UtamaController implements Initializable {
     	controller.initData(ua);	
     	kanan.getChildren().setAll(utamaParent);
     }
+    
+    @FXML
+    private void refreshListEvent() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("listEvent.fxml"));
+    	Pane utamaParent = loader.load();
+    	
+    	ListEventController controller = loader.getController();
+    	controller.initData(ua,tujuanTanggal);	
+    	kanan.getChildren().setAll(utamaParent);
+    }
+    
     
     public void initData(Account ua) {
     	if(ua instanceof UserAccount) {
