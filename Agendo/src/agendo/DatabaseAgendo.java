@@ -80,7 +80,7 @@ public class DatabaseAgendo {
          // loop through the result set  
             while (rs.next()) {  
             	System.out.println("Event Found");
-            	Event e = new Event(rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
+            	Event e = new Event(rs.getInt("event_id"),rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
             	eventList.add(e);
             }   
         } catch (SQLException e) {  
@@ -101,7 +101,7 @@ public class DatabaseAgendo {
 	         // loop through the result set  
 	            while (rs.next()) {  
 	            	System.out.println("Event Found");
-	            	Event e = new Event(rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
+	            	Event e = new Event(rs.getInt("event_id"),rs.getString("title"),rs.getString("date"),rs.getString("detail_event"),rs.getString("category"));
 	            	eventList.add(e);
 	            }   
 	        } catch (SQLException e) {  
@@ -112,6 +112,47 @@ public class DatabaseAgendo {
 	}
 	
 	
+	public void deleteEvent(Event ev) {
+		String sql = "DELETE from event where event_id=?";  
+        
+        try {  
+            Connection conn = this.connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1,ev.getEventID());
+            pstmt.executeUpdate();
+            System.out.println("Sukses hapus event di db");
+         // loop through the result set  
+              
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            System.out.println("ilang");
+        }
+	}
+	
+	public void updateEvent(Event ev, String title, String category, String date, String detail_event) {
+		String sql = "UPDATE event SET title = ? , "
+                + "category = ? ,"
+                + "date = ? ,"
+                + "detail_event= ?"
+                + "WHERE event_id = ?";
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, title);
+            pstmt.setString(2, category);
+            pstmt.setString(3, date);
+            pstmt.setString(4, detail_event);
+            pstmt.setInt(5, ev.getEventID());
+            // update 
+            pstmt.executeUpdate();
+            System.out.println("SUKSES UPDATE DATA event");
+            //eror handling
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+	}
+
 	
 	public void addEvent(UserAccount ua, Event ev) {
 		String sql = "INSERT INTO event(title,category,date,detail_event,user_id) VALUES(?,?,?,?,?)";  

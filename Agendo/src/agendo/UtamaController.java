@@ -47,6 +47,7 @@ public class UtamaController implements Initializable {
     private Calendar calendar = Calendar.getInstance();
     private String tujuanTanggal="2020-06-";
     private int cek=0;
+    private DatabaseAgendo da = new DatabaseAgendo();
     
 
     private int getLastDateOfMonth(int dateMonth) {
@@ -150,6 +151,7 @@ public class UtamaController implements Initializable {
     
     @FXML
     private void tombolPopulate() {
+
     	System.out.println(eventList.size());
     	System.out.println("=======================");
     	for(int k=0;k<eventList.size();k++) {
@@ -200,6 +202,7 @@ public class UtamaController implements Initializable {
     	}
     	if(cek>0) {
     		try {
+    	    	eventList = da.selectEvent(ua);
     			this.refreshListEvent();
     		} catch (IOException e) {
     			// TODO Auto-generated catch block

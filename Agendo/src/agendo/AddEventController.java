@@ -7,6 +7,7 @@ package agendo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -31,7 +32,16 @@ public class AddEventController implements Initializable {
 	@FXML private TextArea deskripsi;
 	@FXML private DatePicker tanggal;
 	private UserAccount ua=null;
+	private boolean edit = false;
 	private DatabaseAgendo da = new DatabaseAgendo();
+	private Event e;
+	
+	public static final LocalDate LOCAL_DATE (String dateString){
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate localDate = LocalDate.parse(dateString, formatter);
+	    return localDate;
+	}
+	
 	
     @FXML
     private void cancel() throws IOException {
@@ -54,14 +64,60 @@ public class AddEventController implements Initializable {
     	System.out.println(ua.getAccountID()+" boss");
     }
     
-    //tombol delete
+    public void iniDataForEdit(UserAccount ua, Event e) {
+    	this.ua = ua;
+    	this.edit = true;
+    	this.e = e;
+    	System.out.println("passing data event pilihan");
+    	System.out.println(e.getEventID());
+    	System.out.println(e.getJudul());
+    	System.out.println(e.getKategori());
+    	System.out.println(e.getTanggal());
+    	tanggal.setValue(LOCAL_DATE(e.getTanggal()));
+    	judul.setText(e.getJudul());
+    	kategori.setText(e.getKategori());
+    	deskripsi.setText(e.getDeskripsi());
+    }
     
+    
+    
+    //tombol delete
+    @FXML
+    private void delete() throws IOException {
+    	da.deleteEvent(e);
+    	System.out.println("coba delete");
+    	cancel();
+    }
     @FXML
     private void save() throws IOException {
-    	String date = tanggal.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    	Event e = new Event(judul.getText(),date,deskripsi.getText(),kategori.getText());
-    	ua.addEvent(e);
-    	da.addEvent(ua, e);
+    	System.out.println("TOMBOL SVAE DIKLIK BOSKU");
+		String date = tanggal.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		Event e = new Event(0,judul.getText(),date,deskripsi.getText(),kategori.getText());
+    	if(edit) {
+    		boolean change=false;
+    		if(!tanggal.toString().equalsIgnoreCase(e.getTanggal())) {
+    			change = true;
+    			System.out.println("TANGGALNYA GANTI");
+    		}
+    		if(!judul.getText().equalsIgnoreCase(e.getJudul())) {
+    			change = true;
+    			System.out.println("Judul ganti");
+    		}
+    		if(!kategori.getText().equalsIgnoreCase(e.getKategori())) {
+    			change = true;
+    			System.out.println("kategori berubah");
+    		}
+    		if(!deskripsi.getText().equalsIgnoreCase(e.getDeskripsi())) {
+    			change = true;
+    			System.out.println("deskrisasfas");
+    		}
+    		if(change) {
+    			da.updateEvent(e, judul.getText(), kategori.getText(), tanggal.toString(), deskripsi.getText());
+    		}
+    	}else {
+    		ua.addEvent(e);
+    		da.addEvent(ua, e);    		
+    	}
     	cancel();
     }
     
