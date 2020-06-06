@@ -129,6 +129,44 @@ public class DatabaseAgendo {
         }
 	}
 	
+	public void deleteEvent(Account ua) {
+		String sql = "DELETE from event where user_id=?";  
+        
+        try {  
+            Connection conn = this.connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1,ua.getAccountID());
+            pstmt.executeUpdate();
+            System.out.println("Sukses hapus event di db yang berkaitan");
+         // loop through the result set  
+              
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            System.out.println("ilang");
+        }
+	}
+	
+	
+	public void deleteAccount(Account a) {
+		String sql = "DELETE from account where account_id=?";  
+		System.out.println("DELETE FROM account where account_id="+a.getAccountID());
+        try {  
+            Connection conn = this.connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setInt(1,a.getAccountID());
+            pstmt.executeUpdate();
+            System.out.println("Sukses hapus account di db: "+a.toString());
+            if(a instanceof UserAccount) {
+            	this.deleteEvent(a);
+            }
+              
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+            System.out.println("ilang");
+        }
+	}
+	
+	
 	public void updateEvent(Event ev, String title, String category, String date, String detail_event) {
 		String sql = "UPDATE event SET title = ? , "
                 + "category = ? ,"

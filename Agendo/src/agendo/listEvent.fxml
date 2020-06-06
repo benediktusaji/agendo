@@ -19,7 +19,6 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </ImageView>
-            <Label text="Label" />
             <TextField />
             <TableView fx:id="tableView" prefHeight="407.0" prefWidth="228.0">
               <columns>

@@ -80,7 +80,6 @@
                      </padding>
                   </HBox>
                   <ComboBox fx:id="bulan" layoutX="14.0" layoutY="28.0" onAction="#tombolBulan" prefHeight="25.0" prefWidth="105.0" />
-                  <Label fx:id="jumlahHari" layoutX="144.0" layoutY="32.0" text="Label" />
                   <ComboBox fx:id="tahun" layoutX="427.0" layoutY="28.0" onAction="#tombolTahun" prefHeight="25.0" prefWidth="82.0" />
                   <Button layoutX="442.0" layoutY="459.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
                   <Button layoutX="249.0" layoutY="458.0" mnemonicParsing="false" onAction="#editAccount" text="Profile" />

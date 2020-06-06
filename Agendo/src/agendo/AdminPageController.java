@@ -69,7 +69,17 @@ public class AdminPageController implements Initializable {
     	window.show();
     }
     
-    
+   
+    public void deleteAccount() {
+    	if(tableView.getSelectionModel().getSelectedItem().getAccountID()!=acc.getAccountID()) {
+    		da.deleteAccount(tableView.getSelectionModel().getSelectedItem());
+    		tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+    	}
+    	else {
+    		System.out.println("adkun sendiri");
+    	}
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -77,7 +87,6 @@ public class AdminPageController implements Initializable {
     	namaColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("username"));
     	emailColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
     	passwordColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
-    	eventsColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("password"));
     	ObservableList<Account> oblist = FXCollections.observableArrayList();
     	for(int i=0;i<accountList.size();i++) {
     		oblist.add(accountList.get(i));
@@ -85,6 +94,9 @@ public class AdminPageController implements Initializable {
     	tableView.setItems(oblist);
     }
 
+   
+    
+    
   
        
     

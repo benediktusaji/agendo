@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  */
 public class UtamaController implements Initializable {
     
-    @FXML private Label jumlahHari;
+//    @FXML private Label jumlahHari;
     @FXML private GridPane grid = new GridPane();
     @FXML private ComboBox bulan;
     @FXML private ComboBox tahun;
@@ -112,7 +112,7 @@ public class UtamaController implements Initializable {
     	this.lastday = getLastDateOfMonth(dateMonth);
     	calendar.set(Calendar.DATE, 1);
     	this.hari = calendar.get(Calendar.DAY_OF_WEEK);
-    	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
+//    	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
     	tombolPopulate();
     }
     
@@ -145,7 +145,7 @@ public class UtamaController implements Initializable {
     		targetTahun="2025";
     	}
     	calendar.set(Calendar.YEAR, iTahun);
-    	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
+//    	jumlahHari.setText("Ada: "+lastday+"\n Hari pertama adalah hari:"+hari+"\n "+calendar.getTime());
     	tombolBulan();
     }
     

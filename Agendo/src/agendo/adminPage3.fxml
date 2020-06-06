@@ -51,11 +51,6 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TableView>
-                  <Button mnemonicParsing="false" onAction="#deleteAccount" style="-fx-background-color: #ed4337;" text="Delete Account" textFill="#f2f2f2">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
          </children>
