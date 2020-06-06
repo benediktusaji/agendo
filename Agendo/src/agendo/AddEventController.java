@@ -34,7 +34,11 @@ public class AddEventController implements Initializable {
 	private UserAccount ua=null;
 	private boolean edit = false;
 	private DatabaseAgendo da = new DatabaseAgendo();
-	private Event e;
+	private String tanggalLama;
+	private String judulLama;
+	private String kategoriLama;
+	private String deskripsiLama;
+	private Event ev;
 	
 	public static final LocalDate LOCAL_DATE (String dateString){
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -66,8 +70,13 @@ public class AddEventController implements Initializable {
     
     public void iniDataForEdit(UserAccount ua, Event e) {
     	this.ua = ua;
+    	this.ev = e;
     	this.edit = true;
-    	this.e = e;
+    	this.tanggalLama = e.getTanggal();
+    	this.judulLama = e.getJudul();
+    	this.kategoriLama = e.getKategori();
+    	this.deskripsiLama = e.getDeskripsi();
+    	System.out.println(edit);
     	System.out.println("passing data event pilihan");
     	System.out.println(e.getEventID());
     	System.out.println(e.getJudul());
@@ -84,7 +93,7 @@ public class AddEventController implements Initializable {
     //tombol delete
     @FXML
     private void delete() throws IOException {
-    	da.deleteEvent(e);
+    	da.deleteEvent(ev);
     	System.out.println("coba delete");
     	cancel();
     }
@@ -95,24 +104,24 @@ public class AddEventController implements Initializable {
 		Event e = new Event(0,judul.getText(),date,deskripsi.getText(),kategori.getText());
     	if(edit) {
     		boolean change=false;
-    		if(!tanggal.toString().equalsIgnoreCase(e.getTanggal())) {
+    		if(!tanggal.toString().equalsIgnoreCase(tanggalLama)) {
     			change = true;
     			System.out.println("TANGGALNYA GANTI");
     		}
-    		if(!judul.getText().equalsIgnoreCase(e.getJudul())) {
+    		if(!judul.getText().equalsIgnoreCase(judulLama)) {
     			change = true;
     			System.out.println("Judul ganti");
     		}
-    		if(!kategori.getText().equalsIgnoreCase(e.getKategori())) {
+    		if(!kategori.getText().equalsIgnoreCase(kategoriLama)) {
     			change = true;
     			System.out.println("kategori berubah");
     		}
-    		if(!deskripsi.getText().equalsIgnoreCase(e.getDeskripsi())) {
+    		if(!deskripsi.getText().equalsIgnoreCase(deskripsiLama)) {
     			change = true;
     			System.out.println("deskrisasfas");
     		}
     		if(change) {
-    			da.updateEvent(e, judul.getText(), kategori.getText(), tanggal.toString(), deskripsi.getText());
+    			da.updateEvent(ev, judul.getText(), kategori.getText(), date, deskripsi.getText());
     		}
     	}else {
     		ua.addEvent(e);
