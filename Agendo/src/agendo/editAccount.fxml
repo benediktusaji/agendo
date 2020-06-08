@@ -80,7 +80,6 @@
                               <Insets left="200.0" top="40.0" />
                            </HBox.margin>
                         </VBox>
-                        <Label text="Label" />
                      </children>
                      <VBox.margin>
                         <Insets top="30.0" />
